@@ -13,29 +13,30 @@ function maysc(cadena) {
 }
 
 function titulo(cadena) {
-	let palabras = cadena.split(' ');
-	for(let i = 0; i < palabras.length; i++){
-		let palabra = palabras[i];
-		let letra = palabra[0];
-		letra = letra.toLocaleUpperCase;
-		return letra;
-	}
-	return palabras.join(' ');
+	var palabras = cadena.split(' ');
+	palabras.forEach( function(valor, indice) {
+		palabras[indice] = palabras[indice].charAt(0).toUpperCase() + palabras[indice].slice(1);
+	});
+return palabras.join(' ');
 }
 
 function letrasReves(cadena) {
-
+	return cadena.split('').reverse().join('');
 }
 
 function palabrasReves(cadena) {
-
+	return cadena.split(' ').reverse().join(' ');
 }
 
 function palindromo(cadena) {
-
+	///[\W_]/g esta parte la he sacado de internet es un flitro para que los caracteres sean numeros o letras y la g es para busqueda global
+	var filtro = /[\W_]/g;
+	var cadenaMinuscula = cadena.toLowerCase().replace(filtro, '');
+	var cadenaReves = cadenaMinuscula.split('').reverse().join(''); 
+	return cadenaReves === cadenaMinuscula;
 }
 
-/*module.exports = {
+module.exports = {
 	letras,
 	palabras,
 	maysc,
@@ -43,4 +44,4 @@ function palindromo(cadena) {
 	letrasReves,
 	palabrasReves,
 	palindromo
-}*/
+}
